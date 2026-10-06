@@ -1,0 +1,23 @@
+[Unit]
+Description=Dukes Mate AI chess coach
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=dukesmateai
+Group=dukesmateai
+EnvironmentFile=/etc/dukesmateai/app.env
+WorkingDirectory=/opt/dukesmateai/current
+# One process: the analysis queue runs on a thread inside it. --proxy-headers so sign-in limits see real client IPs.
+ExecStart=/opt/dukesmateai/bin/run-with-secret.sh /opt/dukesmateai/venv/bin/uvicorn chesscoach.api:create_app --factory \
+    --host ${APP_HOST} --port ${APP_PORT} --workers 1 --proxy-headers --forwarded-allow-ips 127.0.0.1
+Restart=always
+RestartSec=5
+StateDirectory=dukesmateai
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

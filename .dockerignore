@@ -1,0 +1,11 @@
+.venv
+.git
+data
+dist
+engines
+tests
+tools
+sample_games
+__pycache__
+*.pyc
+.pytest_cache

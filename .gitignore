@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+dist/
+data/
+.env
+# The Stockfish build is large and platform-specific; fetch it separately (see README).
+engines/

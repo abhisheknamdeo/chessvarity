@@ -1,0 +1,18 @@
+# docker compose up -d --build
+# Put an HTTPS reverse proxy (Caddy, nginx, Traefik, or your host's load balancer) in front of port 8000.
+services:
+  chesscoach:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8000:8000"   # only the local proxy can reach it
+    volumes:
+      - chesscoach-data:/data
+    environment:
+      CHESSCOACH_COOKIE_SECURE: "true"    # requires HTTPS (http://localhost is also fine for testing)
+      CHESSCOACH_ALLOW_SIGNUP: "true"     # set to "false" after your family has signed up
+      CHESSCOACH_DEPTH: "12"
+      CHESSCOACH_THREADS: "1"
+
+volumes:
+  chesscoach-data:

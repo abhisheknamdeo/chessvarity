@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Chess Varsity flyer</title>
+<style>
+@font-face { font-family: Figtree; src: url("../src/chesscoach/static/fonts/figtree-400-normal.woff2") format("woff2"); font-weight: 400; }
+@font-face { font-family: Figtree; src: url("../src/chesscoach/static/fonts/figtree-500-normal.woff2") format("woff2"); font-weight: 500; }
+@font-face { font-family: Figtree; src: url("../src/chesscoach/static/fonts/figtree-600-normal.woff2") format("woff2"); font-weight: 600; }
+@font-face { font-family: Figtree; src: url("../src/chesscoach/static/fonts/figtree-700-normal.woff2") format("woff2"); font-weight: 700; }
+:root { --navy: #0d1836; --royal: #2748c7; --gold: #d99a0b; --gold-2: #ffd166; --ink: #0e1a3a; --muted: #4a5478; }
+@page { size: A4 landscape; margin: 0; }
+* { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+html, body { margin: 0; background: #fff; color: var(--ink); font-family: Figtree, "Segoe UI", Arial, sans-serif; }
+.sheet { width: 297mm; height: 210mm; display: grid; grid-template-columns: 1fr 1fr; position: relative; overflow: hidden; background: #fff; }
+.sheet::after { content: ""; position: absolute; left: 50%; top: 0; bottom: 0; border-left: 0.3mm dashed #b8bfd6; }
+.cut { position: absolute; left: 50%; top: 1.5mm; transform: translateX(-50%) rotate(90deg); font-size: 10pt; color: #9aa3c0; background: #fff; z-index: 1; line-height: 1; }
+.flyer { padding: 6mm; height: 210mm; }
+.panel { height: 100%; border-radius: 5mm; padding: 4mm; display: flex; flex-direction: column; gap: 2.5mm;
+  background: radial-gradient(120% 60% at 100% 0%, #e7ecff 0%, rgba(231,236,255,0) 60%),
+              radial-gradient(90% 50% at 0% 100%, #fff1cc 0%, rgba(255,241,204,0) 65%), #fbfbfe;
+  border: 0.3mm solid #e3e7f5; }
+.panel > * { flex-shrink: 0; }
+
+.band { position: relative; overflow: hidden; color: #fff; border-radius: 4mm; padding: 3.8mm 4.5mm; display: flex; align-items: center; gap: 3.6mm;
+  background: linear-gradient(120deg, #0d1836 0%, #182c78 60%, #2748c7 100%); border-bottom: 1.3mm solid var(--gold); }
+.band::after { content: ""; position: absolute; right: -4mm; top: -4mm; width: 34mm; height: 34mm; opacity: .13; transform: rotate(12deg);
+  background: repeating-conic-gradient(#ffd166 0 25%, transparent 0 50%) 0 0 / 8mm 8mm; }
+.logo svg { width: 15mm; height: 15mm; display: block; filter: drop-shadow(0 0.6mm 1mm rgba(0,0,0,.35)); }
+.name { font-size: 19pt; font-weight: 700; letter-spacing: -0.2pt; line-height: 1.05; }
+.beta { font-size: 6.5pt; font-weight: 700; background: var(--gold-2); color: var(--navy); border-radius: 1mm; padding: 0.6mm 1.5mm; vertical-align: middle; letter-spacing: 0.6pt; position: relative; top: -1mm; }
+.tag { color: var(--gold-2); font-size: 9.6pt; font-weight: 600; margin-top: 0.8mm; }
+
+h1 { font-size: 15.5pt; line-height: 1.16; margin: 0.8mm 0 0; color: var(--navy); letter-spacing: -0.2pt; }
+h1 mark { background: #fff1c2; color: var(--royal); border-radius: 1.4mm; padding: 0.2mm 1.4mm 0.6mm; white-space: nowrap; box-decoration-break: clone; }
+.lead { font-size: 8.8pt; line-height: 1.4; margin: 0; color: var(--muted); }
+.label { display: flex; align-items: center; gap: 2mm; font-size: 7.8pt; font-weight: 700; letter-spacing: 1pt; text-transform: uppercase; color: #b07600; }
+.label::before, .label::after { content: ""; height: 0.3mm; flex: 1; background: linear-gradient(90deg, transparent, #e7b949); }
+.label::after { background: linear-gradient(90deg, #e7b949, transparent); }
+
+.feats { display: grid; grid-template-columns: 1fr 1fr; gap: 2mm; }
+.feat { display: flex; gap: 2.2mm; border-radius: 2.6mm; padding: 2.3mm 2.4mm; background: #fff;
+  background-image: linear-gradient(135deg, color-mix(in srgb, var(--c) 11%, #fff), #fff 70%);
+  border: 0.3mm solid color-mix(in srgb, var(--c) 28%, #fff); border-top: 1mm solid var(--c); }
+.ic { flex: none; width: 7.6mm; height: 7.6mm; border-radius: 2.2mm; background: var(--c); display: grid; place-items: center;
+  box-shadow: 0 0.6mm 1.4mm color-mix(in srgb, var(--c) 45%, transparent); }
+.ic svg { width: 4.6mm; height: 4.6mm; }
+.feat h3 { font-size: 8.9pt; line-height: 1.2; margin: 0 0 0.7mm; color: color-mix(in srgb, var(--c) 70%, #0d1836); }
+.feat p { font-size: 7.4pt; line-height: 1.32; margin: 0; color: var(--muted); }
+
+.study { display: flex; flex-wrap: wrap; align-items: center; gap: 1.3mm; font-size: 8pt; color: var(--navy); }
+.study b { margin-right: 0.8mm; }
+.study span { color: #fff; background: var(--c); border-radius: 99mm; padding: 0.8mm 2.4mm; font-weight: 600; font-size: 7.7pt; }
+
+.cta { margin-top: auto; display: flex; align-items: center; gap: 4.5mm; border-radius: 4mm; padding: 3.4mm 4mm;
+  background: linear-gradient(120deg, #ffd166 0%, #f7b733 100%); box-shadow: inset 0 0 0 0.4mm rgba(13,24,54,.12); }
+.qr { flex: none; width: 31mm; height: 31mm; padding: 2mm; background: #fff; border-radius: 2.5mm; }
+.qr svg { width: 100%; height: 100%; display: block; }
+.scan { font-size: 17pt; font-weight: 700; color: var(--navy); line-height: 1.1; }
+.url { display: inline-block; font-size: 12.5pt; font-weight: 700; color: #fff; background: var(--navy); border-radius: 1.6mm; padding: 0.8mm 2.4mm; margin: 1.4mm 0 1.8mm; }
+.cta p { margin: 0; font-size: 8.2pt; line-height: 1.35; color: #3d3100; }
+.cta p.soon { margin-top: 1.2mm; color: var(--navy); font-weight: 700; }
+.spark { display: inline-grid; place-items: center; width: 4.2mm; height: 4.2mm; border-radius: 50%; background: var(--navy); color: var(--gold-2); font-size: 7pt; vertical-align: -0.8mm; margin-right: 0.6mm; }
+@media screen { body { background: #e5e8f2; padding: 10mm 0; } .sheet { margin: 0 auto; box-shadow: 0 2mm 8mm rgba(13,24,54,.18); } }
+</style>
+</head>
+<body>
+<main class="sheet">
+  <span class="cut" aria-hidden="true">✂</span>
+  
+<section class="flyer"><div class="panel">
+  <header class="band">
+    <div class="logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Chess Varsity">
+  
+  <defs>
+    <linearGradient id="gold-1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffd166"/>
+      <stop offset="1" stop-color="#d99a0b"/>
+    </linearGradient>
+  </defs>
+  <!-- Badge: royal navy with a gold rim -->
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="#0d1836"/>
+  <rect x="3.5" y="3.5" width="57" height="57" rx="12.5" fill="none" stroke="url(#gold-1)" stroke-width="3"/>
+  <!-- A varsity "CV" monogram -->
+  <text x="32" y="38.5" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="25" letter-spacing="-1" fill="url(#gold-1)">CV</text>
+  <rect x="14" y="41" width="36" height="2" rx="1" fill="#b77f06"/>
+  <!-- A strip of chessboard: the game -->
+  <g>
+    <rect x="15" y="45.5" width="34" height="9" rx="2" fill="#eaeefb"/>
+    <rect x="15" y="45.5" width="5.67" height="4.5" fill="#d99a0b"/>
+    <rect x="26.33" y="45.5" width="5.67" height="4.5" fill="#d99a0b"/>
+    <rect x="37.67" y="45.5" width="5.67" height="4.5" fill="#d99a0b"/>
+    <rect x="20.67" y="50" width="5.67" height="4.5" fill="#d99a0b"/>
+    <rect x="32" y="50" width="5.67" height="4.5" fill="#d99a0b"/>
+    <rect x="43.33" y="50" width="5.67" height="4.5" fill="#d99a0b"/>
+  </g>
+  <!-- A spark: AI on the way -->
+  <path d="M52 4.5 L53.4 8.6 L57.5 10 L53.4 11.4 L52 15.5 L50.6 11.4 L46.5 10 L50.6 8.6 Z" fill="#ffffff"/>
+</svg>
+</div>
+    <div>
+      <div class="name">Chess Varsity <span class="beta">BETA</span></div>
+      <div class="tag">Free chess coach and planner</div>
+    </div>
+  </header>
+
+  <h1>Your tournament games hold the key to your <mark>next rating jump.</mark></h1>
+  <p class="lead">Most chess apps are made for playing online. Chess Varsity turns the games you battle through
+    over the board into a coaching plan made just for you.</p>
+
+  <div class="label"><span>What makes us different</span></div>
+  <div class="feats"><div class="feat" style="--c:#2748c7"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 01-10 0V4zM17 5h3v2a3 3 0 01-3 3M7 5H4v2a3 3 0 003 3"/></svg></div><div><h3>Your USCF record, done for you</h3><p>Type your USCF ID once. Every tournament, round, opponent and result appears by itself, with your rating journey and a month-by-month scorecard.</p></div></div><div class="feat" style="--c:#0d9488"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h3l2-3h6l2 3h3a1 1 0 011 1v11a1 1 0 01-1 1H4a1 1 0 01-1-1V8a1 1 0 011-1zM12 17a4 4 0 100-8 4 4 0 000 8z"/></svg></div><div><h3>Snap it. Upload it. Learn from it.</h3><p>Upload a PGN or tap in the moves, and keep a photo of your scoresheet with the game. Then see every move reviewed.</p></div></div><div class="feat" style="--c:#e0533d"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a9 9 0 100-18 9 9 0 000 18zM12 16a4 4 0 100-8 4 4 0 000 8zM12 12h.01"/></svg></div><div><h3>Catch the mistake you keep making</h3><p>We study all your games together to find the habits costing you points, and show you exactly where they happened.</p></div></div><div class="feat" style="--c:#7c3aed"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18M7 15l4-4 3 3 5-6"/></svg></div><div><h3>A coach’s plan, built from your games</h3><p>Know your top 3 priorities, your next rating milestone and what to train each day of the week.</p></div></div><div class="feat" style="--c:#d97706"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h18v16H3zM3 10h18M8 3v4M16 3v4"/></svg></div><div><h3>Tournament weekends, sorted</h3><p>Registration, fees, hotel and travel tracked for every event, and all your past and upcoming games in one schedule.</p></div></div><div class="feat" style="--c:#16a34a"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div><div><h3>Ask about any move</h3><p>Share a game with the community, get answers from fellow players, and earn points for helping others.</p></div></div></div>
+
+  <div class="study"><b>Level up with</b><span style="--c:#2748c7">Openings</span><span style="--c:#0d9488">Model games</span><span style="--c:#e0533d">Attack academy</span><span style="--c:#7c3aed">Think like a Grandmaster</span></div>
+
+  <footer class="cta">
+    <div class="qr"><svg shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29 29"><path stroke="#0d1836" d="M0 0.5h7m1 0h1m3 0h1m1 0h1m3 0h3m1 0h7m-29 1h1m5 0h1m1 0h1m2 0h1m3 0h1m4 0h1m1 0h1m5 0h1m-29 1h1m1 0h3m1 0h1m1 0h2m1 0h3m1 0h2m2 0h2m1 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m2 0h3m2 0h1m1 0h2m1 0h1m2 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m2 0h1m1 0h3m1 0h1m1 0h1m1 0h2m1 0h1m1 0h3m1 0h1m-29 1h1m5 0h1m1 0h3m1 0h2m1 0h2m5 0h1m5 0h1m-29 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-21 1h3m1 0h2m2 0h1m-15 1h3m1 0h1m1 0h3m1 0h1m2 0h1m2 0h2m1 0h3m2 0h3m-29 1h1m1 0h3m2 0h2m1 0h2m4 0h5m1 0h4m2 0h1m-28 1h1m1 0h1m2 0h1m3 0h2m1 0h1m1 0h1m2 0h1m1 0h5m1 0h1m-27 1h5m3 0h1m3 0h2m2 0h1m2 0h1m1 0h2m2 0h1m1 0h1m-26 1h1m1 0h7m2 0h1m1 0h1m5 0h1m1 0h1m2 0h3m-27 1h4m4 0h2m3 0h1m2 0h5m1 0h2m2 0h1m-29 1h3m1 0h4m1 0h1m1 0h4m2 0h2m1 0h1m2 0h1m-24 1h1m4 0h1m1 0h8m1 0h1m2 0h1m1 0h1m2 0h2m2 0h1m-28 1h1m1 0h1m2 0h1m2 0h1m15 0h3m-28 1h3m1 0h1m2 0h4m3 0h3m2 0h2m1 0h3m2 0h2m-29 1h1m2 0h5m1 0h2m1 0h5m5 0h2m1 0h1m-26 1h1m2 0h3m2 0h1m2 0h2m4 0h4m1 0h1m1 0h2m1 0h1m-28 1h1m1 0h1m1 0h1m1 0h1m3 0h1m1 0h5m1 0h11m-21 1h1m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m3 0h2m2 0h1m-29 1h7m3 0h4m2 0h1m1 0h3m1 0h1m1 0h1m-25 1h1m5 0h1m5 0h2m1 0h2m2 0h2m3 0h2m2 0h1m-29 1h1m1 0h3m1 0h1m1 0h5m1 0h3m1 0h1m1 0h8m-28 1h1m1 0h3m1 0h1m1 0h2m3 0h3m3 0h3m1 0h1m-24 1h1m1 0h3m1 0h1m1 0h1m4 0h1m2 0h2m1 0h6m1 0h2m-28 1h1m5 0h1m4 0h1m2 0h3m1 0h1m1 0h3m1 0h2m1 0h1m-28 1h7m3 0h1m2 0h1m1 0h2m7 0h3"/></svg>
+</div>
+    <div class="cta-text">
+      <div class="scan">Scan &amp; start free</div>
+      <div class="url">ChessVarsity.com</div>
+      <p>Phone, tablet or computer. Nothing to install.</p>
+      <p class="soon"><span class="spark">★</span> AI coming soon: ask about any position and get deeper analysis like never before.</p>
+    </div>
+  </footer>
+</div></section>
+  
+<section class="flyer"><div class="panel">
+  <header class="band">
+    <div class="logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Chess Varsity">
+  
+  <defs>
+    <linearGradient id="gold-2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffd166"/>
+      <stop offset="1" stop-color="#d99a0b"/>
+    </linearGradient>
+  </defs>
+  <!-- Badge: royal navy with a gold rim -->
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="#0d1836"/>
+  <rect x="3.5" y="3.5" width="57" height="57" rx="12.5" fill="none" stroke="url(#gold-2)" stroke-width="3"/>
+  <!-- A varsity "CV" monogram -->
+  <text x="32" y="38.5" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="25" letter-spacing="-1" fill="url(#gold-2)">CV</text>
+  <rect x="14" y="41" width="36" height="2" rx="1" fill="#b77f06"/>
+  <!-- A strip of chessboard: the game -->
+  <g>
+    <rect x="15" y="45.5" width="34" height="9" rx="2" fill="#eaeefb"/>
+    <rect x="15" y="45.5" width="5.67" height="4.5" fill="#d99a0b"/>
+    <rect x="26.33" y="45.5" width="5.67" height="4.5" fill="#d99a0b"/>
+    <rect x="37.67" y="45.5" width="5.67" height="4.5" fill="#d99a0b"/>
+    <rect x="20.67" y="50" width="5.67" height="4.5" fill="#d99a0b"/>
+    <rect x="32" y="50" width="5.67" height="4.5" fill="#d99a0b"/>
+    <rect x="43.33" y="50" width="5.67" height="4.5" fill="#d99a0b"/>
+  </g>
+  <!-- A spark: AI on the way -->
+  <path d="M52 4.5 L53.4 8.6 L57.5 10 L53.4 11.4 L52 15.5 L50.6 11.4 L46.5 10 L50.6 8.6 Z" fill="#ffffff"/>
+</svg>
+</div>
+    <div>
+      <div class="name">Chess Varsity <span class="beta">BETA</span></div>
+      <div class="tag">Free chess coach and planner</div>
+    </div>
+  </header>
+
+  <h1>Your tournament games hold the key to your <mark>next rating jump.</mark></h1>
+  <p class="lead">Most chess apps are made for playing online. Chess Varsity turns the games you battle through
+    over the board into a coaching plan made just for you.</p>
+
+  <div class="label"><span>What makes us different</span></div>
+  <div class="feats"><div class="feat" style="--c:#2748c7"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 01-10 0V4zM17 5h3v2a3 3 0 01-3 3M7 5H4v2a3 3 0 003 3"/></svg></div><div><h3>Your USCF record, done for you</h3><p>Type your USCF ID once. Every tournament, round, opponent and result appears by itself, with your rating journey and a month-by-month scorecard.</p></div></div><div class="feat" style="--c:#0d9488"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h3l2-3h6l2 3h3a1 1 0 011 1v11a1 1 0 01-1 1H4a1 1 0 01-1-1V8a1 1 0 011-1zM12 17a4 4 0 100-8 4 4 0 000 8z"/></svg></div><div><h3>Snap it. Upload it. Learn from it.</h3><p>Upload a PGN or tap in the moves, and keep a photo of your scoresheet with the game. Then see every move reviewed.</p></div></div><div class="feat" style="--c:#e0533d"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a9 9 0 100-18 9 9 0 000 18zM12 16a4 4 0 100-8 4 4 0 000 8zM12 12h.01"/></svg></div><div><h3>Catch the mistake you keep making</h3><p>We study all your games together to find the habits costing you points, and show you exactly where they happened.</p></div></div><div class="feat" style="--c:#7c3aed"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18M7 15l4-4 3 3 5-6"/></svg></div><div><h3>A coach’s plan, built from your games</h3><p>Know your top 3 priorities, your next rating milestone and what to train each day of the week.</p></div></div><div class="feat" style="--c:#d97706"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h18v16H3zM3 10h18M8 3v4M16 3v4"/></svg></div><div><h3>Tournament weekends, sorted</h3><p>Registration, fees, hotel and travel tracked for every event, and all your past and upcoming games in one schedule.</p></div></div><div class="feat" style="--c:#16a34a"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div><div><h3>Ask about any move</h3><p>Share a game with the community, get answers from fellow players, and earn points for helping others.</p></div></div></div>
+
+  <div class="study"><b>Level up with</b><span style="--c:#2748c7">Openings</span><span style="--c:#0d9488">Model games</span><span style="--c:#e0533d">Attack academy</span><span style="--c:#7c3aed">Think like a Grandmaster</span></div>
+
+  <footer class="cta">
+    <div class="qr"><svg shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29 29"><path stroke="#0d1836" d="M0 0.5h7m1 0h1m3 0h1m1 0h1m3 0h3m1 0h7m-29 1h1m5 0h1m1 0h1m2 0h1m3 0h1m4 0h1m1 0h1m5 0h1m-29 1h1m1 0h3m1 0h1m1 0h2m1 0h3m1 0h2m2 0h2m1 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m2 0h3m2 0h1m1 0h2m1 0h1m2 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m2 0h1m1 0h3m1 0h1m1 0h1m1 0h2m1 0h1m1 0h3m1 0h1m-29 1h1m5 0h1m1 0h3m1 0h2m1 0h2m5 0h1m5 0h1m-29 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-21 1h3m1 0h2m2 0h1m-15 1h3m1 0h1m1 0h3m1 0h1m2 0h1m2 0h2m1 0h3m2 0h3m-29 1h1m1 0h3m2 0h2m1 0h2m4 0h5m1 0h4m2 0h1m-28 1h1m1 0h1m2 0h1m3 0h2m1 0h1m1 0h1m2 0h1m1 0h5m1 0h1m-27 1h5m3 0h1m3 0h2m2 0h1m2 0h1m1 0h2m2 0h1m1 0h1m-26 1h1m1 0h7m2 0h1m1 0h1m5 0h1m1 0h1m2 0h3m-27 1h4m4 0h2m3 0h1m2 0h5m1 0h2m2 0h1m-29 1h3m1 0h4m1 0h1m1 0h4m2 0h2m1 0h1m2 0h1m-24 1h1m4 0h1m1 0h8m1 0h1m2 0h1m1 0h1m2 0h2m2 0h1m-28 1h1m1 0h1m2 0h1m2 0h1m15 0h3m-28 1h3m1 0h1m2 0h4m3 0h3m2 0h2m1 0h3m2 0h2m-29 1h1m2 0h5m1 0h2m1 0h5m5 0h2m1 0h1m-26 1h1m2 0h3m2 0h1m2 0h2m4 0h4m1 0h1m1 0h2m1 0h1m-28 1h1m1 0h1m1 0h1m1 0h1m3 0h1m1 0h5m1 0h11m-21 1h1m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m3 0h2m2 0h1m-29 1h7m3 0h4m2 0h1m1 0h3m1 0h1m1 0h1m-25 1h1m5 0h1m5 0h2m1 0h2m2 0h2m3 0h2m2 0h1m-29 1h1m1 0h3m1 0h1m1 0h5m1 0h3m1 0h1m1 0h8m-28 1h1m1 0h3m1 0h1m1 0h2m3 0h3m3 0h3m1 0h1m-24 1h1m1 0h3m1 0h1m1 0h1m4 0h1m2 0h2m1 0h6m1 0h2m-28 1h1m5 0h1m4 0h1m2 0h3m1 0h1m1 0h3m1 0h2m1 0h1m-28 1h7m3 0h1m2 0h1m1 0h2m7 0h3"/></svg>
+</div>
+    <div class="cta-text">
+      <div class="scan">Scan &amp; start free</div>
+      <div class="url">ChessVarsity.com</div>
+      <p>Phone, tablet or computer. Nothing to install.</p>
+      <p class="soon"><span class="spark">★</span> AI coming soon: ask about any position and get deeper analysis like never before.</p>
+    </div>
+  </footer>
+</div></section>
+</main>
+</body>
+</html>

@@ -1,0 +1,10 @@
+[Unit]
+Description=Dukes Mate AI database backup to S3
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=dukesmateai
+Group=dukesmateai
+EnvironmentFile=/etc/dukesmateai/app.env
+ExecStart=/opt/dukesmateai/bin/run-with-secret.sh /opt/dukesmateai/bin/backup.sh

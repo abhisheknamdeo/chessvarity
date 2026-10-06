@@ -1,0 +1,39 @@
+# Caddy: the public entry point. It gets and renews Let's Encrypt certificates for every name below
+# (their DNS A records must point at the Elastic IP) and redirects HTTP to HTTPS on its own.
+
+dukesmateai.com {
+	encode gzip
+	reverse_proxy 127.0.0.1:8000
+	log {
+		output file /var/log/caddy/access.log {
+			roll_size 20MiB
+			roll_keep 5
+		}
+	}
+}
+
+# chessvarsity.com serves the same app (while it is being set up as an additional address).
+chessvarsity.com {
+	encode gzip
+	reverse_proxy 127.0.0.1:8000
+	log {
+		output file /var/log/caddy/access.log {
+			roll_size 20MiB
+			roll_keep 5
+		}
+	}
+}
+
+www.chessvarsity.com {
+	redir https://chessvarsity.com{uri} permanent
+}
+
+# The other names only send people to the main address.
+www.dukesmateai.com, dukemateai.com, www.dukemateai.com {
+	redir https://dukesmateai.com{uri} permanent
+}
+
+# Visits by bare IP address go to the main address too.
+:80 {
+	redir https://dukesmateai.com{uri} permanent
+}

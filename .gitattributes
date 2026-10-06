@@ -1,0 +1,6 @@
+# Keep Unix line endings everywhere: the deploy runs these files on Linux.
+* text=auto eol=lf
+*.png binary
+*.pdf binary
+*.woff2 binary
+*.jpg binary

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Chess Varsity">
+  <title>Chess Varsity</title>
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffd166"/>
+      <stop offset="1" stop-color="#d99a0b"/>
+    </linearGradient>
+  </defs>
+  <!-- Badge: royal navy with a gold rim -->
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="#0d1836"/>
+  <rect x="3.5" y="3.5" width="57" height="57" rx="12.5" fill="none" stroke="url(#gold)" stroke-width="3"/>
+  <!-- A varsity "CV" monogram -->
+  <text x="32" y="38.5" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="25" letter-spacing="-1" fill="url(#gold)">CV</text>
+  <rect x="14" y="41" width="36" height="2" rx="1" fill="#b77f06"/>
+  <!-- A strip of chessboard: the game -->
+  <g>
+    <rect x="15" y="45.5" width="34" height="9" rx="2" fill="#eaeefb"/>
+    <rect x="15" y="45.5" width="5.67" height="4.5" fill="#d99a0b"/>
+    <rect x="26.33" y="45.5" width="5.67" height="4.5" fill="#d99a0b"/>
+    <rect x="37.67" y="45.5" width="5.67" height="4.5" fill="#d99a0b"/>
+    <rect x="20.67" y="50" width="5.67" height="4.5" fill="#d99a0b"/>
+    <rect x="32" y="50" width="5.67" height="4.5" fill="#d99a0b"/>
+    <rect x="43.33" y="50" width="5.67" height="4.5" fill="#d99a0b"/>
+  </g>
+  <!-- A spark: AI on the way -->
+  <path d="M52 4.5 L53.4 8.6 L57.5 10 L53.4 11.4 L52 15.5 L50.6 11.4 L46.5 10 L50.6 8.6 Z" fill="#ffffff"/>
+</svg>
